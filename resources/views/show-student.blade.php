@@ -1,101 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Estudiante</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+@extends('plantilla2')
 
-        header {
-            background-color: #00ab84;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+@section('titulo', 'Detalles del Estudiante')
 
-        .card {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f8f8f8;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #00ab84;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #105747;
-        }
-
-        p.error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: -10px;
-            margin-bottom: 10px;
-        }
-
-        .back-button {
-            margin-top: 20px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-   
-    <header>
-        <img src="https://lh5.googleusercontent.com/proxy/gh8uxjVzG49LDjhLZgrcMzWVgzWsjuQsdKcVnoXBwk-IOBfNSVMQZ2EhaRIbD01Cd1KBKHBiZdhZK04ziZVFTWYh0udmb8T_7x1NeFrb6oq-5gSa4mVt" alt="Logo UT Cancún">
-    </header>
-
-    <div class="back-button">
+@section('contenido')
+    <div class="back-button my-4">
         <a href="../../estudiantes">
-            <button type="button">Regresar</button>
+            <button type="button" class="btn btn-primary">
+                Regresar
+            </button>
         </a>
     </div>
 
-    <div class="card">
-        <h1 align='center'>Detalles Estudiante</h1>
-
-        <p>
-            Nombre del estudiante: {{$student->name_student}}
-        </p>
-        
-        <p>
-            Apellido del Estudiante: {{$student->lastname_student}}
-        </p>
+    <div class="card bg-body-secondary shadow-sm rounded px-4 py-4 mb-4" style="max-width: 400px; margin: 0 auto;">
+        <h1 class="text-center text-xl font-bold mb-4">Detalles del Estudiante</h1>
+        <p class="mb-2"><span class="font-weight-bold">ID del estudiante:</span> {{$student->id_student}}</p>
+        <p class="mb-2"><span class="font-weight-bold">Nombre del estudiante:</span> {{$student->name_student}}</p>
+        <p class="mb-2"><span class="font-weight-bold">Apellido del estudiante:</span> {{$student->lastname_student}}</p>
+        <p class="mb-2"><span class="font-weight-bold">Fecha de nacimiento:</span> {{$student->birthday}}</p>
+        <p class="mb-2"><span class="font-weight-bold">Comentarios:</span> {{$student->comments}}</p>
     </div>
-
-
-</body>
-</html>
+@endsection

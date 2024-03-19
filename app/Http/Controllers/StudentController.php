@@ -15,8 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // $students = Student::all();
-        $students =Student::paginate(10);
+        $students = Student::paginate(10); // Mostrar 10 elementos por página
         return view('students', compact('students'));
     }
 
@@ -40,7 +39,7 @@ class StudentController extends Controller
         $student->birthday = $request->birthday;
         $student->comments = $request->comments;
         $student->save();
-    
+
         return redirect()->route('estudiantes.index')->with('success', 'Datos agregados exitosamente.');
     }
 
@@ -65,18 +64,34 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StudentRequest $request, $id):RedirectResponse
-    {
-        $student= Student::find($id);
-        $student->update->all();
-        return redirect()->route('estudiantes.index')->with('notificacion','Estudiante edita correctamente');
-    }
+    public function update(Request $request, $id)
+{
+    $student = Student::find($id);
+    $student->update([
+        'name_student' => $request->input('name_student'),
+        'lastname_student' => $request->input('lastname_student'),
+        'birthday' => $request->input('birthday'),
+        'comments' => $request->input('comments'),
+    ]);
+    return redirect()->route('estudiantes.index')->with('notificacion', 'Estudiante editado correctamente');
+}
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $student = Student::find($id);
+        if (!$student) {
+            return redirect()->route('estudiantes.index')->with('error', 'Estudiante no encontrado.');
+        }
+
+        $student->delete();
+        return redirect()->route('estudiantes.index')->with('success', 'Estudiante eliminado correctamente.');
     }
 }

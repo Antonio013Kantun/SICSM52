@@ -1,112 +1,52 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Edición de Estudiantes</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+@extends('plantilla2')
 
-        header {
-            background-color: #00ab84;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+@section('titulo', 'Formulario de Edición de Estudiantes')
 
-        form {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f8f8f8;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #00ab84;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #105747;
-        }
-
-        
-
-        p.error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: -10px;
-            margin-bottom: 10px;
-        }
-
-        .back-button {
-            margin-top: 20px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-   
-    <header>
-        <img src="https://lh5.googleusercontent.com/proxy/gh8uxjVzG49LDjhLZgrcMzWVgzWsjuQsdKcVnoXBwk-IOBfNSVMQZ2EhaRIbD01Cd1KBKHBiZdhZK04ziZVFTWYh0udmb8T_7x1NeFrb6oq-5gSa4mVt" alt="Logo UT Cancún">
-    </header>
-
-
-    <br>
-    <br>
+@section('contenido')
     <div class="back-button">
         <a href="../../estudiantes">
-            <button type="button">Regresar</button>
+            <button type="button" class="btn btn-primary">
+                Regresar
+            </button>
         </a>
     </div>
-     
 
-    <form action="{{ route('estudiantes.update', $student->id) }}" method="POST">
+    <form action="{{ route('estudiantes.update', $student->id) }}" method="POST" class="card" style="max-width: 400px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f8f8f8; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
         @csrf
         @method("put")
 
-        <label for="name_student">Nombre:</label>
-        <input type="text" name="name_student" value="{{ $student->name_student }}">
-        @error('name_student')
-            <p class="error-message">{{ $message }}</p>
-        @enderror
+        <h1 align='center'>Editar Estudiante</h1>
 
-        <label for="lastname_student">Apellido:</label>
-        <input type="text" name="lastname_student" value="{{ $student->lastname_student }}">
-        @error('lastname_student')
-            <p class="error-message">{{ $message }}</p>
-        @enderror
+        <div class="form-group">
+            <label for="name_student">Nombre:</label>
+            <input type="text" name="name_student" value="{{ $student->name_student }}" class="form-control">
+            @error('name_student')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
+        </div>
 
-        <button type="submit">Editar</button>
+        <div class="form-group">
+            <label for="lastname_student">Apellido:</label>
+            <input type="text" name="lastname_student" value="{{ $student->lastname_student }}" class="form-control">
+            @error('lastname_student')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="birthday">Apellido:</label>
+            <input type="text" name="birthday" value="{{ $student->birthday }}" class="form-control">
+            @error('birthday')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="comments">Comentarios:</label>
+            <input type="text" name="comments" value="{{ $student->comments }}" class="form-control">
+            @error('comments')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Editar</button>
     </form>
-</body>
-</html>
+@endsection

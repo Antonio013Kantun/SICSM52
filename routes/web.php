@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentReportsController;
 // use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,18 +26,25 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/reportes/{estudiantes}', [StudentReportsController::class, 'show_cardex'])->name('reportes.imprimir');
 });
 
 require __DIR__.'/auth.php';
 
 
+    Route::get('/alumnos',[StudentController::class, "index"]);
+    Route::post('/alumnos',[StudentController::class, "store"]);
+    Route::put('/estudiantes/{estudiante}', [StudentController::class, 'update'])->name('estudiantes.update');
+    Route::delete('/estudiantes/{estudiante}', [StudentController::class, 'destroy'])->name('estudiantes.destroy');
 
-    // Route::get('/alumnos',[StudentController::class, "index"]);
-    // Route::post('/alumnos',[StudentController::class, "store"]);
 
     Route::resource('estudiantes',StudentController::class)->middleware('auth');
 
@@ -47,8 +55,9 @@ require __DIR__.'/auth.php';
 
     Route::get('/denegado', function () {
         return view('denegado');
-    })->name('denegado'); 
-    
+    })->name('denegado');
+
+
 
 
 
