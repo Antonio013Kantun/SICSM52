@@ -19,6 +19,7 @@
                     <th>Ver detalles</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
+                    <th>Generar PDF</th> {{-- Nuevo encabezado --}}
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +40,12 @@
                             </button>
                         </form>
                     </td>
-
+                    <td>
+                        <form action="{{ route('reportes.imprimir', $student->id) }}" method="GET"> {{-- Utiliza 'GET' en lugar de 'POST' si es una ruta 'Route::get' --}}
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Generar PDF</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

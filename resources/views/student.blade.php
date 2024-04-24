@@ -18,25 +18,25 @@
         @csrf
         <input type="text" name="name_student" placeholder="Nombre" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 3px; border: 1px solid #ccc;">
         @error('name_student')
-            <div>{{$message}}</div>
+            <div class="text-danger">{{$message}}</div>
         @enderror
         <input type="text" name="lastname_student" placeholder="Apellido" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 3px; border: 1px solid #ccc;">
         @error('lastname_student')
-            <div>{{$message}}</div>
+            <div class="text-danger">{{$message}}</div>
         @enderror
         <input type="number" name="id_student" placeholder="Matricula" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 3px; border: 1px solid #ccc;">
         @error('id_student')
-            <div>{{$message}}</div>
+            <div class="text-danger">{{$message}}</div>
         @enderror
         <input type="date" name="birthday" placeholder="Cumpleaños" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 3px; border: 1px solid #ccc;">
         @error('birthday')
-            <div>{{$message}}</div>
+            <div class="text-danger">{{$message}}</div>
         @enderror
         <input type="text" name="comments" placeholder="Comentarios" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 3px; border: 1px solid #ccc;">
         @error('comments')
-            <div>{{$message}}</div>
+            <div class="text-danger">{{$message}}</div>
         @enderror
-        <button type="submit" style="width: 100%; padding: 10px; margin-top: 10px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;">Enviar</button>
+        <button type="submit" style="width: 100%; padding: 10px; margin-top: 40px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;">Enviar</button>
     </form>
 </div>
 @endsection
